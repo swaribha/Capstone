@@ -1,0 +1,39 @@
+Data Description
+Sources
+Data used in this project is retieved from the following two sources:
+1.	Chicago area information from https://en.wikipedia.org/wiki/Community_areas_in_Chicago 
+2.	Population data downloaded from http://robparal.blogspot.com/2013/07/chicago-community-area-and-zip-code.html as  csv file 
+3.	Foursquare location data
+
+Using Data
+
+Data from the Wikipedia is scrapped using beautiful soup and loaded table. It is then cleaned to keep the desired features – North side neighborhood and their respective community areas. Next, we pass these neighborhood's latitudes and longitudes into the Foursquare search url. Our search query is for yoga or gym in the radius of 500 meters of these coordinates and limit is set to 100 results for each neighborhood. Search query gives us 1203 results which includes, gyms, yoga centers, pilate studios, and other fitness centers in all the neighborhoods of Manhattan. Response includes: Venue names, location address, location geographical coordinates, postal codes, country, state, formatted address,. are relevant to our problem. For example,
+
+<[{'categories': [{'icon': {'prefix': 'https://ss3.4sqi.net/img/categories_v2/shops/gym_yogastudio_',
+     'suffix': '.png'},
+    'id': '4bf58dd8d48988d102941735',
+    'name': 'Yoga Studio',
+    'pluralName': 'Yoga Studios',
+    'primary': True,
+    'shortName': 'Yoga Studio'}],
+  'hasPerk': False,
+  'id': '4d657823601d88bfcb19c3bb',
+  'location': {'address': '480 South Michigan Ave.',
+   'cc': 'US',
+   'city': 'Chicago',
+   'country': 'United States',
+   'distance': 30,
+   'formattedAddress': ['480 South Michigan Ave.',
+    'Chicago, IL',
+    'United States'],
+   'labeledLatLngs': [{'label': 'display',
+     'lat': 41.875839,
+     'lng': -87.624405}],
+   'lat': 41.875839,
+   'lng': -87.624405,
+   'state': 'IL'},
+  'name': 'Yoga @ Roosevelt University',
+
+Visualizing Data
+Using Folium, a visual is obtained to see the spread of all the fitness centers in Manhattan neighborhoods. The graphic image is interactive and shows the name and type of fitness centers. We get an overview of neighborhoods where the density of these studios is intense and where they are sparse.
+For further precise information on the location with minimum competition, we apply KMeans to cluster the neighborhood based on population and distance. The process gives us clusters with minimum density and further information about these neighborhoods is used to select the perfect location to start our Anti-Gravity Yoga Studio.
